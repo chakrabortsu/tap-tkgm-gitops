@@ -1,0 +1,60 @@
+tap_install:
+  values:
+    shared:
+      ingress_domain: "h2o-2-10453.h2o.vmware.com"
+      ingress_issuer: ""
+      
+      image_registry:
+        project_path: "harbor-local.h2o-2-10453.h2o.vmware.com/tap"
+        username: "admin"
+   
+    ceip_policy_disclosed: true
+      
+    profile:  full
+      
+    supply_chain: basic
+    
+    ootb_supply_chain_basic:
+      registry:
+        server: "harbor-local.h2o-2-10453.h2o.vmware.com"
+        repository: "tap"
+      gitops:
+        ssh_secret: ""
+  
+    contour:
+      envoy:
+        service:
+          type: LoadBalancer
+
+    buildservice:
+      kp_default_repository: "harbor-local.h2o-2-10453.h2o.vmware.com/tap/build-service"
+      kp_default_repository_secret:
+        name: registry-credentials
+        namespace: tap-install
+
+    tap_gui:
+      service_type: ClusterIP # If the shared.ingress_domain is set as earlier, this must be set to ClusterIP.
+      metadataStoreAutoconfiguration: true #Create a service account,the Kubernetes control plane token and the requisite app_config block to enable communications between Tanzu Application Platform GUI and SCST - Store.
+      app_config:
+        catalog:
+          locations:
+          - type: url
+            target: https://github.com/suchakra012/tap-yelb-catalog/blob/main/catalog-info.yaml
+
+    metadata_store:
+      ns_for_export_app_cert: "dev"
+      app_service_type: ClusterIP
+
+    namespace_provisioner:
+      controller: true
+
+    scanning:
+      metadataStore:
+      url: "" # Disable embedded integration since it's deprecated
+     
+    grype:
+      namespace: "default"
+      targetImagePullSecret: "registry-credentials"
+      
+    policy:
+      tuf_enabled: false
