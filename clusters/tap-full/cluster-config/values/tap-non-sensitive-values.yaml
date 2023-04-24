@@ -27,7 +27,7 @@ tap_install:
           type: LoadBalancer
 
     buildservice:
-      kp_default_repository: "index.docker.io/chakrabortsu181/build-service"
+      kp_default_repository: "harbor-local.h2o-2-10453.h2o.vmware.com/tap"
       kp_default_repository_secret:
         name: registries-credentials
         namespace: tbs-credentials
