@@ -31,6 +31,7 @@ tap_install:
       kp_default_repository_secret:
         name: "registries-credentials"       
         namespace: "tbs-credentials"
+      exclude_dependencies: true  
 
     tap_gui:
       service_type: ClusterIP # If the shared.ingress_domain is set as earlier, this must be set to ClusterIP.
