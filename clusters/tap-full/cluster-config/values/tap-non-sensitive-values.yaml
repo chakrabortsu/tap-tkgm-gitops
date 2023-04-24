@@ -29,8 +29,8 @@ tap_install:
     buildservice:
       kp_default_repository: "harbor-local.h2o-2-10453.h2o.vmware.com/tap/build-service"
       kp_default_repository_secret:
-        name: registry-credentials
-        namespace: tap-registry
+        name: registries-credentials
+        namespace: tbs-credentials
 
     tap_gui:
       service_type: ClusterIP # If the shared.ingress_domain is set as earlier, this must be set to ClusterIP.
@@ -54,7 +54,7 @@ tap_install:
      
     grype:
       namespace: "default"
-      targetImagePullSecret: "registry-credentials"
+      targetImagePullSecret: "registries-credentials"
       
     policy:
       tuf_enabled: false
