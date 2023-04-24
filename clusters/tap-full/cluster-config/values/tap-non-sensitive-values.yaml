@@ -16,7 +16,7 @@ tap_install:
     
     ootb_supply_chain_basic:
       registry:
-        server: "harbor-local.h2o-2-10453.h2o.vmware.com
+        server: "harbor-local.h2o-2-10453.h2o.vmware.com"
         repository: "tap"
       gitops:
         ssh_secret: ""
