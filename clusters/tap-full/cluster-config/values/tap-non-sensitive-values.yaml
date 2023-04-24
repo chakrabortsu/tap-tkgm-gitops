@@ -3,7 +3,39 @@ tap_install:
     shared:
       ingress_domain: "h2o-2-10453.h2o.vmware.com"
       ingress_issuer: ""
-      
+      ca_cert_data: |
+        -----BEGIN CERTIFICATE-----
+        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
+        NtE5/NVublDuTICJmFKRCn5GI4udT1g=
+        -----END CERTIFICATE-----
       image_registry:
         project_path: "harbor-local.h2o-2-10453.h2o.vmware.com/tap"
         username: "admin"
@@ -29,7 +61,7 @@ tap_install:
     buildservice:
       kp_default_repository: "harbor-local.h2o-2-10453.h2o.vmware.com/tap/build-service"
       kp_default_repository_username: admin
-      exclude_dependencies: true  
+      exclude_dependencies: true
 
     tap_gui:
       service_type: ClusterIP # If the shared.ingress_domain is set as earlier, this must be set to ClusterIP.
