@@ -28,8 +28,9 @@ tap_install:
 
     buildservice:
       kp_default_repository: "index.docker.io/chakrabortsu181/build-service"
-      kp_default_repository_username: chakrabortsu181
-      exclude_dependencies: true
+      kp_default_repository_secret:
+        name: "registries-credentials"       
+        namespace: "tbs-credentials"
 
     tap_gui:
       service_type: ClusterIP # If the shared.ingress_domain is set as earlier, this must be set to ClusterIP.
