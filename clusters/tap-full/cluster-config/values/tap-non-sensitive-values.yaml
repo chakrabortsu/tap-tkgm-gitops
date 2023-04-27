@@ -75,9 +75,6 @@ tap_install:
       ns_for_export_app_cert: "dev"
       app_service_type: ClusterIP
 
-    namespace_provisioner:
-      controller: true
-
     scanning:
       metadataStore:
       url: "" # Disable embedded integration since it's deprecated
@@ -88,15 +85,19 @@ tap_install:
     policy:
       tuf_enabled: false
     
-  namespace_provisioner:
-    controller: false
-    additional_sources:
-    - git:
+    namespace_provisioner:
+      controller: false
+      import_data_values_secrets:
+      - name: registries-credentials
+        namespace: tbs-install
+        create_export: true
+      additional_sources:
+      - git:
+          ref: origin/main
+          subPath: ns-provisioner-samples/testing-scanning-supplychain
+          url: git@github.com:chakrabortsu/application-accelerator-samples.git
+        path: _ytt_lib/testing-scanning-supplychain-setup
+      gitops_install:
         ref: origin/main
-        subPath: ns-provisioner-samples/testing-scanning-supplychain
+        subPath: ns-provisioner-samples/gitops-install
         url: git@github.com:chakrabortsu/application-accelerator-samples.git
-      path: _ytt_lib/testing-scanning-supplychain-setup
-    gitops_install:
-      ref: origin/main
-      subPath: ns-provisioner-samples/gitops-install
-      url: git@github.com:chakrabortsu/application-accelerator-samples.git
