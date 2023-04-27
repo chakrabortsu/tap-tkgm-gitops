@@ -44,9 +44,9 @@ tap_install:
       
     profile:  full
       
-    supply_chain: basic
+    supply_chain: testing_scanning
     
-    ootb_supply_chain_basic:
+    ootb_supply_chain_testing_scanning:
       registry:
         server: "harbor-local.h2o-2-10453.h2o.vmware.com"
         repository: "tap"
@@ -87,3 +87,20 @@ tap_install:
       
     policy:
       tuf_enabled: false
+    
+  namespace_provisioner:
+    controller: false
+    additional_sources:
+    - git:
+        ref: origin/main
+        subPath: ns-provisioner-samples/testing-scanning-supplychain
+        url: git@github.com:chakrabortsu/application-accelerator-samples.git
+      path: _ytt_lib/testing-scanning-supplychain-setup
+    gitops_install:
+      ref: origin/main
+      subPath: ns-provisioner-samples/gitops-install
+      url: git@github.com:chakrabortsu/application-accelerator-samples.git
+    import_data_values_secrets:
+    - name: registries-credentials
+      namespace: tbs-install
+      create_export: true  
