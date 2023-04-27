@@ -90,6 +90,10 @@ tap_install:
     
   namespace_provisioner:
     controller: false
+    import_data_values_secrets:
+    - name: registries-credentials
+      namespace: tbs-install
+      create_export: true
     additional_sources:
     - git:
         ref: origin/main
@@ -100,7 +104,3 @@ tap_install:
       ref: origin/main
       subPath: ns-provisioner-samples/gitops-install
       url: git@github.com:chakrabortsu/application-accelerator-samples.git
-    import_data_values_secrets:
-    - name: registries-credentials
-      namespace: tbs-install
-      create_export: true  
