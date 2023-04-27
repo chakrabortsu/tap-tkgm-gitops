@@ -90,10 +90,6 @@ tap_install:
     
   namespace_provisioner:
     controller: false
-    import_data_values_secrets:
-    - name: registries-credentials
-      namespace: tbs-install
-      create_export: true
     additional_sources:
     - git:
         ref: origin/main
