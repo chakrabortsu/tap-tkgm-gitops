@@ -81,7 +81,10 @@ tap_install:
      
     grype:
       namespace: "default"
-      
+    
+    appliveview_connector:
+      activateSensitiveOperations: true  
+
     policy:
       tuf_enabled: false
     
