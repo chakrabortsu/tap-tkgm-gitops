@@ -82,13 +82,8 @@ tap_install:
     grype:
       namespace: "default"
    
-    appliveview:
-      ingressDomain: "h2o-2-10453.h2o.vmware.com"
-         
     appliveview_connector:
       activateSensitiveOperations: true  
-      backend:
-        sslDisabled: "true"      
 
     policy:
       tuf_enabled: false
